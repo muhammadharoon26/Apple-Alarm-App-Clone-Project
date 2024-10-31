@@ -5,6 +5,8 @@ void main() {
 }
 
 class TimerPage extends StatelessWidget {
+  const TimerPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class TimerPage extends StatelessWidget {
 }
 
 class TimerPageState extends StatelessWidget {
+  const TimerPageState({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

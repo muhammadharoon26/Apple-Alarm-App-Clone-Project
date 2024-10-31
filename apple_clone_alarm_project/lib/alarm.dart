@@ -5,6 +5,8 @@ void main() {
 }
 
 class AlarmPage extends StatelessWidget {
+  const AlarmPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class AlarmPage extends StatelessWidget {
 }
 
 class AlarmPageState extends StatelessWidget {
+  const AlarmPageState({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

@@ -5,6 +5,8 @@ void main() {
 }
 
 class StopWatchPage extends StatelessWidget {
+  const StopWatchPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class StopWatchPage extends StatelessWidget {
 }
 
 class StopWatchPageState extends StatelessWidget {
+  const StopWatchPageState({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

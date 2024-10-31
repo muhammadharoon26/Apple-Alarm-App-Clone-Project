@@ -5,6 +5,8 @@ void main() {
 }
 
 class WorldClock extends StatelessWidget {
+  const WorldClock({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class WorldClock extends StatelessWidget {
 }
 
 class WorldClockState extends StatelessWidget {
+  const WorldClockState({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
