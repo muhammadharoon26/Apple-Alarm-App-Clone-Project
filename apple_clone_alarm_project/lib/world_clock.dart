@@ -1,38 +1,63 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const WorldClock());
+  runApp(WorldClock());
 }
 
-class WorldClock extends StatefulWidget {
-  const WorldClock({super.key});
-
-  @override
-  State<WorldClock> createState() => WorldClockState();
-}
-
-class WorldClockState extends State<WorldClock> {
+class WorldClock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Align(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Apple Clone Alarm Project',
+      home: WorldClockState(),
+    );
+  }
+}
+
+class WorldClockState extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
                 alignment: Alignment.topLeft,
-                child: Text('Edit',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 226, 168, 31),
-                    ))),
-            Align(
+                child: Text(
+                  'Edit',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 226, 168, 31),
+                  ),
+                ),
+              ),
+              Align(
                 alignment: Alignment.topRight,
-                child: Text('+',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 226, 168, 31),
-                    ))),
-          ]),
-          backgroundColor: Colors.black,
-        ));
+                child: Text(
+                  '+',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 226, 168, 31),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 5),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              'World Clock',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ],
+      ),
+      backgroundColor: Colors.black,
+    );
   }
 }
