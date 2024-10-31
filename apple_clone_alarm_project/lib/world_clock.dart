@@ -22,7 +22,7 @@ class WorldClockState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
           Row(
@@ -49,8 +49,8 @@ class WorldClockState extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          Align(
-            alignment: Alignment.topLeft,
+          Container(
+            width: double.infinity,
             child: Text(
               'World Clock',
               style: TextStyle(
@@ -58,7 +58,39 @@ class WorldClockState extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        color: const Color.fromARGB(170, 158, 158, 158)))),
           ),
+          Container(
+            width: double.infinity,
+            child: Text(
+              'Cupertino',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        color: const Color.fromARGB(170, 158, 158, 158)))),
+          ),
+          Container(
+            width: double.infinity,
+            child: Text(
+              'New York',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        color: const Color.fromARGB(170, 158, 158, 158)))),
+          )
         ],
       ),
       backgroundColor: Colors.black,
