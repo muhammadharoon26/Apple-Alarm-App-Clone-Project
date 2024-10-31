@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:apple_clone_alarm_project/world_clock.dart';
+import 'package:apple_clone_alarm_project/alarm.dart';
+import 'package:apple_clone_alarm_project/timer.dart';
+import 'package:apple_clone_alarm_project/stopwatch.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,73 +19,65 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final PageController _controller = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WorldClock(),
+      body: PageView(
+        scrollDirection: Axis.horizontal,
+        controller: _controller,
+        onPageChanged: (index) {
+          setState(() {});
+        },
+        children: [
+          WorldClock(),
+          AlarmPage(),
+          StopWatchPage(),
+          TimerPage(),
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ElevatedButton(
-              child: const Text('World Clock'),
+            IconButton(
+              icon: Icon(Icons.access_time),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WorldClock()),
-                );
+                _controller.animateToPage(0,
+                    duration: Duration(milliseconds: 500), curve: Curves.ease);
               },
             ),
-            ElevatedButton(
-              child: const Text('Alarm'),
+            IconButton(
+              icon: Icon(Icons.alarm),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AlarmPage()),
-                );
+                _controller.animateToPage(1,
+                    duration: Duration(milliseconds: 500), curve: Curves.ease);
               },
             ),
-            ElevatedButton(
-              child: const Text('Timer'),
+            IconButton(
+              icon: Icon(Icons.timer),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TimerPage()),
-                );
+                _controller.animateToPage(2,
+                    duration: Duration(milliseconds: 500), curve: Curves.ease);
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.schedule),
+              onPressed: () {
+                _controller.animateToPage(3,
+                    duration: Duration(milliseconds: 500), curve: Curves.ease);
               },
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class AlarmPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Alarm'),
-      ),
-      body: const Center(
-        child: Text('Alarm Page'),
-      ),
-    );
-  }
-}
-
-class TimerPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Timer'),
-      ),
-      body: const Center(
-        child: Text('Timer Page'),
       ),
     );
   }
