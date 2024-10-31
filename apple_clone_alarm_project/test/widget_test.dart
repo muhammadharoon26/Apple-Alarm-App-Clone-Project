@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:apple_clone_alarm_project/worldClock.dart';
+import 'package:apple_clone_alarm_project/world_clock.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
