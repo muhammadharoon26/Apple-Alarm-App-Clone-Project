@@ -146,7 +146,8 @@ class _AlarmPageState extends State<AlarmPageState> {
               ),
               itemBuilder: (_, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -158,7 +159,7 @@ class _AlarmPageState extends State<AlarmPageState> {
                             textBaseline: TextBaseline.alphabetic,
                             children: [
                               Text(
-                                '07:00',
+                                '7:00',
                                 style: TextStyle(
                                   color: Color.fromARGB(105, 245, 245, 245),
                                   fontSize: 60,
@@ -189,8 +190,10 @@ class _AlarmPageState extends State<AlarmPageState> {
                         children: [
                           Switch(
                             value: alarmSwitchStates[index],
-                            trackOutlineColor:,
-                            activeTrackColor: const Color.fromARGB(255, 62, 236, 77),
+                            trackOutlineColor:
+                                WidgetStateProperty.all(Colors.black54),
+                            activeTrackColor:
+                                const Color.fromARGB(255, 62, 236, 77),
                             inactiveThumbColor: Colors.white,
                             inactiveTrackColor: Colors.black54,
                             onChanged: (bool value) {
