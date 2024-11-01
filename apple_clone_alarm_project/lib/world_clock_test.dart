@@ -3,43 +3,53 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class WorldClock extends StatefulWidget {
-  const WorldClock({Key? key}) : super(key: key);
+  const WorldClock({super.key});
 
   @override
-  _WorldClockState createState() => _WorldClockState();
+  State<WorldClock> createState() => _WorldClockState();
 }
 
 class _WorldClockState extends State<WorldClock> {
   Timer? _timer;
-  final List<CityTime> _cities = [
-    CityTime(
-      cityName: "Cupertino",
-      timeZone: "America/Los_Angeles",
-      offset: "-3HRS",
-    ),
-    CityTime(
-      cityName: "New York",
-      timeZone: "America/New_York",
-      offset: "-3HRS",
-    ),
+  final _timeFormat = DateFormat('h:mm');
+  final _amPmFormat = DateFormat('a');
+
+  final _cities = const [
+    {
+      'name': 'Cupertino',
+      'timezone': 'America/Los_Angeles',
+      'offset': Duration(hours: -3), // Adjust based on timezone
+    },
+    {
+      'name': 'New York',
+      'timezone': 'America/New_York',
+      'offset': Duration(hours: -3), // Adjust based on timezone
+    },
   ];
 
   @override
   void initState() {
     super.initState();
-    _startTimer();
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (mounted) setState(() {});
-    });
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => mounted ? setState(() {}) : null,
+    );
   }
 
   @override
   void dispose() {
     _timer?.cancel();
     super.dispose();
+  }
+
+  String _getOffsetString(Duration offset) {
+    final hours = offset.inHours.abs();
+    return '${offset.isNegative ? "-" : "+"}' + '$hours' + 'HRS';
+  }
+
+  DateTime _getCityTime(Duration offset) {
+    final now = DateTime.now().toUtc();
+    return now.add(offset);
   }
 
   @override
@@ -50,136 +60,109 @@ class _WorldClockState extends State<WorldClock> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildAppBar(),
-            _buildTitle(),
-            Expanded(child: _buildCityList()),
+            _buildHeader(),
+            const Divider(
+              height: 1,
+              color: Colors.grey,
+            ),
+            _buildCityList(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Edit',
+  Widget _buildHeader() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Edit',
+                style: TextStyle(color: Colors.orange[300], fontSize: 16),
+              ),
+              Icon(Icons.add, color: Colors.orange[300]),
+            ],
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
+          child: Text(
+            'World Clock',
             style: TextStyle(
-              color: Colors.orange[300],
-              fontSize: 16,
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          Icon(
-            Icons.add,
-            color: Colors.orange[300],
-            size: 24,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTitle() {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
-      child: Text(
-        'World Clock',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
         ),
-      ),
+      ],
     );
   }
 
   Widget _buildCityList() {
-    return ListView.builder(
-      itemCount: _cities.length,
-      itemBuilder: (context, index) {
-        return _buildCityItem(_cities[index]);
-      },
-    );
-  }
-
-  Widget _buildCityItem(CityTime city) {
-    final now = DateTime.now();
-    final timeFormat = DateFormat('h:mm');
-    final amPmFormat = DateFormat('a');
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.grey[900]!,
-            width: 0.5,
-          ),
+    return Expanded(
+      child: ListView.separated(
+        itemCount: _cities.length,
+        separatorBuilder: (_, __) => const Divider(
+          height: 1,
+          color: Colors.grey,
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Today, ${city.offset}',
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 14,
+        itemBuilder: (_, index) {
+          final city = _cities[index];
+          final cityTime = _getCityTime(city['offset'] as Duration);
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Today, ${_getOffsetString(city['offset'] as Duration)}',
+                      style: TextStyle(color: Colors.grey[500], fontSize: 14),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      city['name']! as String,
+                      style: const TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                city.cityName,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Text(
+                      _timeFormat.format(cityTime),
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                        fontSize: 50,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      _amPmFormat.format(cityTime),
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Text(
-                timeFormat.format(now),
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 32,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              const SizedBox(width: 4),
-              Text(
-                amPmFormat.format(now),
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 32,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          );
+        },
       ),
     );
   }
-}
-
-class CityTime {
-  final String cityName;
-  final String timeZone;
-  final String offset;
-
-  CityTime({
-    required this.cityName,
-    required this.timeZone,
-    required this.offset,
-  });
 }
