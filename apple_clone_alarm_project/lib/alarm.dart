@@ -122,6 +122,19 @@ class _AlarmPageState extends State<AlarmPageState> {
                     )
                   ],
                 ),
+                const Divider(
+                  height: 1,
+                  color: Color.fromARGB(105, 245, 245, 245),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Text('Other',
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
+                const Divider(
+                  height: 1,
+                  color: Color.fromARGB(105, 245, 245, 245),
+                ),
               ],
             ),
           ),
