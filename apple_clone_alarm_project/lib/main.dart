@@ -47,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
         children: const [
           WorldClock(),
           AlarmPage(),
-          StopWatchPage(),
+          // StopWatchPage(),
+          MyStopwatch(),
           TimerPage(),
         ],
       ),
