@@ -25,6 +25,36 @@ class _WorldClockState extends State<WorldClock> {
       'timezone': 'America/New_York',
       'offset': Duration(hours: -3), // Adjust based on timezone
     },
+    {
+      'name': 'Cupertino',
+      'timezone': 'America/Los_Angeles',
+      'offset': Duration(hours: -3), // Adjust based on timezone
+    },
+    {
+      'name': 'New York',
+      'timezone': 'America/New_York',
+      'offset': Duration(hours: -3), // Adjust based on timezone
+    },
+    {
+      'name': 'Cupertino',
+      'timezone': 'America/Los_Angeles',
+      'offset': Duration(hours: -3), // Adjust based on timezone
+    },
+    {
+      'name': 'New York',
+      'timezone': 'America/New_York',
+      'offset': Duration(hours: -3), // Adjust based on timezone
+    },
+    {
+      'name': 'Cupertino',
+      'timezone': 'America/Los_Angeles',
+      'offset': Duration(hours: -3), // Adjust based on timezone
+    },
+    {
+      'name': 'New York',
+      'timezone': 'America/New_York',
+      'offset': Duration(hours: -3), // Adjust based on timezone
+    },
   ];
 
   @override
