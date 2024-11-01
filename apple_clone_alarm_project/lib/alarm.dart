@@ -22,40 +22,31 @@ class AlarmPageState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
                   'Edit',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 226, 168, 31),
-                  ),
+                  style: TextStyle(color: Colors.orange[300], fontSize: 16),
                 ),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: Text(
-                  '+',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 226, 168, 31),
-                  ),
-                ),
-              ),
-            ],
+                Icon(Icons.add, color: Colors.orange[300]),
+              ],
+            ),
           ),
-          SizedBox(height: 5),
-          Align(
-            alignment: Alignment.topLeft,
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
             child: Text(
               'Alarm',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),

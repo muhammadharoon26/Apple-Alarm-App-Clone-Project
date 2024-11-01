@@ -44,7 +44,7 @@ class _WorldClockState extends State<WorldClock> {
 
   String _getOffsetString(Duration offset) {
     final hours = offset.inHours.abs();
-    return '${offset.isNegative ? "-" : "+"}' + '$hours' + 'HRS';
+    return '${offset.isNegative ? "-" : "+"}' '$hours' 'HRS';
   }
 
   DateTime _getCityTime(Duration offset) {
@@ -60,108 +60,105 @@ class _WorldClockState extends State<WorldClock> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHeader(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Edit',
+                        style:
+                            TextStyle(color: Colors.orange[300], fontSize: 16),
+                      ),
+                      Icon(Icons.add, color: Colors.orange[300]),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
+                  child: Text(
+                    'World Clock',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const Divider(
               height: 1,
               color: Colors.grey,
             ),
-            _buildCityList(),
+            Expanded(
+              child: ListView.separated(
+                itemCount: _cities.length,
+                separatorBuilder: (_, __) => const Divider(
+                  height: 1,
+                  color: Colors.grey,
+                ),
+                itemBuilder: (_, index) {
+                  final city = _cities[index];
+                  final cityTime = _getCityTime(city['offset'] as Duration);
+
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Today, ${_getOffsetString(city['offset'] as Duration)}',
+                              style: TextStyle(
+                                  color: Colors.grey[500], fontSize: 14),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              city['name']! as String,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 20),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              _timeFormat.format(cityTime),
+                              style: TextStyle(
+                                color: Colors.grey[500],
+                                fontSize: 50,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              _amPmFormat.format(cityTime),
+                              style: TextStyle(
+                                color: Colors.grey[500],
+                                fontSize: 20,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Edit',
-                style: TextStyle(color: Colors.orange[300], fontSize: 16),
-              ),
-              Icon(Icons.add, color: Colors.orange[300]),
-            ],
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
-          child: Text(
-            'World Clock',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildCityList() {
-    return Expanded(
-      child: ListView.separated(
-        itemCount: _cities.length,
-        separatorBuilder: (_, __) => const Divider(
-          height: 1,
-          color: Colors.grey,
-        ),
-        itemBuilder: (_, index) {
-          final city = _cities[index];
-          final cityTime = _getCityTime(city['offset'] as Duration);
-
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Today, ${_getOffsetString(city['offset'] as Duration)}',
-                      style: TextStyle(color: Colors.grey[500], fontSize: 14),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      city['name']! as String,
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
-                  children: [
-                    Text(
-                      _timeFormat.format(cityTime),
-                      style: TextStyle(
-                        color: Colors.grey[500],
-                        fontSize: 50,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      _amPmFormat.format(cityTime),
-                      style: TextStyle(
-                        color: Colors.grey[500],
-                        fontSize: 20,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        },
       ),
     );
   }
