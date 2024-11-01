@@ -41,13 +41,25 @@ class AlarmPageState extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
-            child: Text(
-              'Alarm',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              children: [
+                Text(
+                  'Alarm',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Sleep|Wake Up',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
             ),
           ),
         ],
