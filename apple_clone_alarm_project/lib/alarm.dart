@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const AlarmPage());
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Apple Clone Alarm Project',
+      home: AlarmPage(),
+    );
+  }
 }
 
 class AlarmPage extends StatelessWidget {
@@ -9,11 +22,7 @@ class AlarmPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Apple Clone Alarm Project',
-      home: AlarmPageState(),
-    );
+    return const AlarmPageState();
   }
 }
 
@@ -25,6 +34,9 @@ class AlarmPageState extends StatefulWidget {
 }
 
 class _AlarmPageState extends State<AlarmPageState> {
+  // Initialize a list to hold the state of each switch in the list
+  List<bool> alarmSwitchStates = List.generate(2, (_) => true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,23 +70,14 @@ class _AlarmPageState extends State<AlarmPageState> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 const Row(
                   children: [
-                    Icon(
-                      Icons.king_bed,
-                      color: Colors.white,
-                    ),
+                    Icon(Icons.king_bed, color: Colors.white),
                     Text(
                       ' Sleep | Wake Up',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    )
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
                   ],
                 ),
                 const Divider(
@@ -92,7 +95,6 @@ class _AlarmPageState extends State<AlarmPageState> {
                           style: TextStyle(
                             color: Color.fromARGB(105, 245, 245, 245),
                             fontSize: 50,
-                            // fontWeight: FontWeight.w300,
                           ),
                         ),
                         Text(
@@ -110,10 +112,8 @@ class _AlarmPageState extends State<AlarmPageState> {
                             const Color.fromARGB(60, 245, 245, 245),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 12),
-                        minimumSize:
-                            Size.zero, // Remove minimum button size constraint
-                        tapTargetSize: MaterialTapTargetSize
-                            .shrinkWrap, // Shrinks the tap target
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(
                         'CHANGE',
@@ -126,16 +126,86 @@ class _AlarmPageState extends State<AlarmPageState> {
                   height: 1,
                   color: Color.fromARGB(105, 245, 245, 245),
                 ),
-                SizedBox(
-                  height: 40,
-                ),
-                Text('Other',
+                const SizedBox(height: 40),
+                const Text('Other',
                     style: TextStyle(color: Colors.white, fontSize: 20)),
                 const Divider(
                   height: 1,
                   color: Color.fromARGB(105, 245, 245, 245),
                 ),
+                const SizedBox(height: 10),
               ],
+            ),
+          ),
+          Expanded(
+            child: ListView.separated(
+              separatorBuilder: (_, __) => const Divider(
+                indent: 15,
+                height: 1,
+                color: Color.fromARGB(105, 245, 245, 245),
+              ),
+              itemBuilder: (_, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              Text(
+                                '07:00',
+                                style: TextStyle(
+                                  color: Color.fromARGB(105, 245, 245, 245),
+                                  fontSize: 60,
+                                ),
+                              ),
+                              Text(
+                                'AM',
+                                style: TextStyle(
+                                  color: Color.fromARGB(105, 245, 245, 245),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'Alarm',
+                            style: TextStyle(
+                                color: Color.fromARGB(105, 245, 245, 245),
+                                fontSize: 14),
+                          ),
+                          SizedBox(height: 4)
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Switch(
+                            value: alarmSwitchStates[index],
+                            trackOutlineColor:,
+                            activeTrackColor: const Color.fromARGB(255, 62, 236, 77),
+                            inactiveThumbColor: Colors.white,
+                            inactiveTrackColor: Colors.black54,
+                            onChanged: (bool value) {
+                              setState(() {
+                                alarmSwitchStates[index] = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+              itemCount: alarmSwitchStates.length,
             ),
           ),
         ],
