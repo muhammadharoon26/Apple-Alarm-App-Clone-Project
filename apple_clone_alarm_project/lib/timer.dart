@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(TimerPage());
+  runApp(const TimerPage());
 }
 
 class TimerPage extends StatelessWidget {
@@ -9,7 +9,7 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apple Clone Alarm Project',
       home: TimerPageState(),

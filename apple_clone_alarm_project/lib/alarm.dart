@@ -9,10 +9,10 @@ class AlarmPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apple Clone Alarm Project',
-      home: const AlarmPageState(),
+      home: AlarmPageState(),
     );
   }
 }
@@ -79,19 +79,48 @@ class _AlarmPageState extends State<AlarmPageState> {
                 ),
                 const Divider(
                   height: 1,
-                  color: Colors.grey,
+                  color: Color.fromARGB(105, 245, 245, 245),
                 ),
-                Text(
-                  'No Alarm',
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 50,
-                    // fontWeight: FontWeight.w300,
-                  ),
-                ),
-                Text(
-                  'Tomorrow Morning',
-                  style: TextStyle(color: Colors.grey[500], fontSize: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'No Alarm',
+                          style: TextStyle(
+                            color: Color.fromARGB(105, 245, 245, 245),
+                            fontSize: 50,
+                            // fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                        Text(
+                          ' Tomorrow Morning',
+                          style: TextStyle(
+                              color: Color.fromARGB(105, 245, 245, 245),
+                              fontSize: 14),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(60, 245, 245, 245),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 12),
+                        minimumSize:
+                            Size.zero, // Remove minimum button size constraint
+                        tapTargetSize: MaterialTapTargetSize
+                            .shrinkWrap, // Shrinks the tap target
+                      ),
+                      child: Text(
+                        'CHANGE',
+                        style: TextStyle(color: Colors.orange[300]),
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),

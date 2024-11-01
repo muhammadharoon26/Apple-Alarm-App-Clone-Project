@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(WorldClock());
+  runApp(const WorldClock());
 }
 
 class WorldClock extends StatelessWidget {
@@ -9,7 +9,7 @@ class WorldClock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apple Clone Alarm Project',
       home: WorldClockState(),
@@ -25,7 +25,7 @@ class WorldClockState extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Align(
@@ -48,48 +48,48 @@ class WorldClockState extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Container(
             width: double.infinity,
-            child: Text(
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        color: Color.fromARGB(170, 158, 158, 158)))),
+            child: const Text(
               'World Clock',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
               ),
             ),
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-                        color: const Color.fromARGB(170, 158, 158, 158)))),
           ),
           Container(
             width: double.infinity,
-            child: Text(
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        color: Color.fromARGB(170, 158, 158, 158)))),
+            child: const Text(
               'Cupertino',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
               ),
             ),
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-                        color: const Color.fromARGB(170, 158, 158, 158)))),
           ),
           Container(
             width: double.infinity,
-            child: Text(
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        color: Color.fromARGB(170, 158, 158, 158)))),
+            child: const Text(
               'New York',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
               ),
             ),
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-                        color: const Color.fromARGB(170, 158, 158, 158)))),
           )
         ],
       ),

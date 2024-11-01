@@ -94,7 +94,7 @@ class _WorldClockState extends State<WorldClock> {
             const Divider(
               indent: 15,
               height: 1,
-              color: Colors.grey,
+              color: Color.fromARGB(105, 245, 245, 245),
             ),
             Expanded(
               child: ListView.separated(
@@ -102,7 +102,7 @@ class _WorldClockState extends State<WorldClock> {
                 separatorBuilder: (_, __) => const Divider(
                   indent: 15,
                   height: 1,
-                  color: Colors.grey,
+                  color: Color.fromARGB(105, 245, 245, 245),
                 ),
                 itemBuilder: (_, index) {
                   final city = _cities[index];
@@ -119,8 +119,10 @@ class _WorldClockState extends State<WorldClock> {
                           children: [
                             Text(
                               'Today, ${_getOffsetString(city['offset'] as Duration)}',
-                              style: TextStyle(
-                                  color: Colors.grey[500], fontSize: 14),
+                              style: const TextStyle(
+                                  color:
+                                      Color.fromARGB(105, 245, 245, 245),
+                                  fontSize: 14),
                             ),
                             const SizedBox(height: 4),
                             Text(
@@ -136,17 +138,16 @@ class _WorldClockState extends State<WorldClock> {
                           children: [
                             Text(
                               _timeFormat.format(cityTime),
-                              style: TextStyle(
-                                color: Colors.grey[500],
-                                fontSize: 50,
-                                fontWeight: FontWeight.w300,
+                              style: const TextStyle(
+                                color: Color.fromARGB(105, 245, 245, 245),
+                                fontSize: 60,
                               ),
                             ),
                             const SizedBox(width: 4),
                             Text(
                               _amPmFormat.format(cityTime),
-                              style: TextStyle(
-                                color: Colors.grey[500],
+                              style: const TextStyle(
+                                color: Color.fromARGB(105, 245, 245, 245),
                                 fontSize: 20,
                                 fontWeight: FontWeight.w300,
                               ),

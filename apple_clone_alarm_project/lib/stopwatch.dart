@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(StopWatchPage());
+  runApp(const StopWatchPage());
 }
 
 class StopWatchPage extends StatelessWidget {
@@ -9,7 +9,7 @@ class StopWatchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apple Clone Alarm Project',
       home: StopWatchPageState(),
