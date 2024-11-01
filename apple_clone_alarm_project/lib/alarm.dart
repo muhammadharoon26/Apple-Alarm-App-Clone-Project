@@ -45,12 +45,12 @@ class _AlarmPageState extends State<AlarmPageState> {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Alarm',
                   style: TextStyle(
                     color: Colors.white,
@@ -58,10 +58,10 @@ class _AlarmPageState extends State<AlarmPageState> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Row(
+                const Row(
                   children: [
                     Icon(
                       Icons.king_bed,
@@ -77,9 +77,21 @@ class _AlarmPageState extends State<AlarmPageState> {
                     )
                   ],
                 ),
-                Divider(
+                const Divider(
                   height: 1,
                   color: Colors.grey,
+                ),
+                Text(
+                  'No Alarm',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                    fontSize: 50,
+                    // fontWeight: FontWeight.w300,
+                  ),
+                ),
+                Text(
+                  'Tomorrow Morning',
+                  style: TextStyle(color: Colors.grey[500], fontSize: 14),
                 ),
               ],
             ),

@@ -92,6 +92,7 @@ class _WorldClockState extends State<WorldClock> {
               ],
             ),
             const Divider(
+              indent: 15,
               height: 1,
               color: Colors.grey,
             ),
@@ -99,6 +100,7 @@ class _WorldClockState extends State<WorldClock> {
               child: ListView.separated(
                 itemCount: _cities.length,
                 separatorBuilder: (_, __) => const Divider(
+                  indent: 15,
                   height: 1,
                   color: Colors.grey,
                 ),
