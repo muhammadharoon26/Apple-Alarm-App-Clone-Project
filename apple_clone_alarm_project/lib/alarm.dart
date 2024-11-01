@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(AlarmPage());
+  runApp(const AlarmPage());
 }
 
 class AlarmPage extends StatelessWidget {
@@ -12,17 +12,23 @@ class AlarmPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apple Clone Alarm Project',
-      home: AlarmPageState(),
+      home: const AlarmPageState(),
     );
   }
 }
 
-class AlarmPageState extends StatelessWidget {
+class AlarmPageState extends StatefulWidget {
   const AlarmPageState({super.key});
 
   @override
+  State<AlarmPageState> createState() => _AlarmPageState();
+}
+
+class _AlarmPageState extends State<AlarmPageState> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,6 +48,7 @@ class AlarmPageState extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Alarm',
@@ -51,20 +58,34 @@ class AlarmPageState extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'Sleep|Wake Up',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.king_bed,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      ' Sleep | Wake Up',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
+                ),
+                Divider(
+                  height: 1,
+                  color: Colors.grey,
+                ),
               ],
             ),
           ),
         ],
       ),
-      backgroundColor: Colors.black,
     );
   }
 }
