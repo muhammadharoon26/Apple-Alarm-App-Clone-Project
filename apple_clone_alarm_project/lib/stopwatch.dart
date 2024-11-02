@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+
 void main() {
-  runApp(const MyStopwatch());
+  runApp(const StopWatchPage());
 }
 
 class StopWatchPage extends StatelessWidget {
@@ -77,15 +78,13 @@ class _MyStopwatchState extends State<MyStopwatch> {
   final Stopwatch _stopwatch = Stopwatch();
   late Duration _elapsedTime;
   late String _elapsedTimeString;
-  late Timer? _timer;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-
     _elapsedTime = Duration.zero;
     _elapsedTimeString = _formatElapsedTime(_elapsedTime);
-
     _startTimer();
   }
 
@@ -146,37 +145,69 @@ class _MyStopwatchState extends State<MyStopwatch> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: 84,
-                  height: 84,
-                child:ElevatedButton(
-                  onPressed: _resetStopwatch,
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
-                      const Color.fromARGB(105, 245, 245, 245),
-                    ),
-                  ),
-                  child: const Text(
-                    'Reset',
-                    style: TextStyle(color: Colors.white,fontSize: 14),
-                  ),
-                ),),
-                SizedBox(
-                  width: 84,
-                  height: 84,
-                  child: ElevatedButton(
-                    onPressed: _startStopwatch,
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                        Colors.green.shade900,
-                      )
-                    ),
-                    child: Text(
-                      _stopwatch.isRunning ? 'Stop' : 'Start',
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 59, 173, 65),
-                        fontSize: 14
+                  width: 90,
+                  height: 90,
+                  child: Stack(alignment: Alignment.center, children: [
+                    Container(width: 90, height: 90, decoration: BoxDecoration(
+                      shape:BoxShape.circle,
+                      border: Border.all(color: const Color.fromARGB(71, 245, 245, 245),width: 3)
+                    ),),
+                    ElevatedButton(
+                      onPressed: _resetStopwatch,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: 
+                          const Color.fromARGB(71, 245, 245, 245),
+                        padding: EdgeInsets.zero,
+                          minimumSize: Size(87, 87),
+                          maximumSize: Size(87, 87),
+                          shape: const CircleBorder(),
+                      ),
+                      child: const Text(
+                        'Reset',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     ),
+                  ]),
+                ),
+                SizedBox(
+                  width: 90,
+                  height: 90,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // Outermost outline
+                      Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          // borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Color.fromARGB(100, 59, 173, 65),
+                            width: 3,
+                          ),
+                        ),
+                      ),
+                      // Main button with innermost outline
+                      ElevatedButton(
+                        onPressed: _startStopwatch,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(170, 21, 81, 25),
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size(87, 87),
+                          maximumSize: Size(87, 87),
+                          shape: const CircleBorder(),
+                        ),
+                        child: Text(
+                          _stopwatch.isRunning ? 'Stop' : 'Start',
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 59, 173, 65),
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
