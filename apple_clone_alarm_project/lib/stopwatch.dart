@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -50,7 +51,7 @@ class StopWatchPageState extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          const Align(
+          Align(
             alignment: Alignment.topLeft,
             child: Text(
               'Stop Watch',
@@ -79,6 +80,7 @@ class _MyStopwatchState extends State<MyStopwatch> {
   late Duration _elapsedTime;
   late String _elapsedTimeString;
   Timer? _timer;
+  List<Duration> lapList = [];
 
   @override
   void initState() {
@@ -110,12 +112,19 @@ class _MyStopwatchState extends State<MyStopwatch> {
   void _resetStopwatch() {
     _stopwatch.reset();
     _updateElapsedTime();
+    lapList.clear();
   }
 
   void _updateElapsedTime() {
     setState(() {
       _elapsedTime = _stopwatch.elapsed;
       _elapsedTimeString = _formatElapsedTime(_elapsedTime);
+    });
+  }
+
+  void _lap() {
+    setState(() {
+      lapList.add(_stopwatch.elapsed);
     });
   }
 
@@ -148,19 +157,24 @@ class _MyStopwatchState extends State<MyStopwatch> {
                   width: 90,
                   height: 90,
                   child: Stack(alignment: Alignment.center, children: [
-                    Container(width: 90, height: 90, decoration: BoxDecoration(
-                      shape:BoxShape.circle,
-                      border: Border.all(color: const Color.fromARGB(71, 245, 245, 245),width: 3)
-                    ),),
+                    Container(
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: const Color.fromARGB(71, 245, 245, 245),
+                              width: 3)),
+                    ),
                     ElevatedButton(
                       onPressed: _resetStopwatch,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: 
-                          const Color.fromARGB(71, 245, 245, 245),
+                        backgroundColor:
+                            const Color.fromARGB(71, 245, 245, 245),
                         padding: EdgeInsets.zero,
-                          minimumSize: Size(87, 87),
-                          maximumSize: Size(87, 87),
-                          shape: const CircleBorder(),
+                        minimumSize: Size(87, 87),
+                        maximumSize: Size(87, 87),
+                        shape: const CircleBorder(),
                       ),
                       child: const Text(
                         'Reset',
@@ -210,7 +224,56 @@ class _MyStopwatchState extends State<MyStopwatch> {
                     ],
                   ),
                 ),
+                SizedBox(
+                  width: 90,
+                  height: 90,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // Outermost outline
+                      Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          // borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Color.fromARGB(100, 59, 173, 65),
+                            width: 3,
+                          ),
+                        ),
+                      ),
+                      // Main button with innermost outline
+                      ElevatedButton(
+                        onPressed: _lap,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(170, 21, 81, 25),
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size(87, 87),
+                          maximumSize: Size(87, 87),
+                          shape: const CircleBorder(),
+                        ),
+                        child: const Text(
+                          'Lap',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 59, 173, 65),
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
+            ),
+            const SizedBox(height: 20.0),
+            const Divider(
+              height: 1,
+              color: Color.fromARGB(105, 245, 245, 245),
+            ),
+            Expanded(
+              child: _buildLapList(),
             ),
           ],
         ),
@@ -218,4 +281,24 @@ class _MyStopwatchState extends State<MyStopwatch> {
       backgroundColor: Colors.black,
     );
   }
+ Widget _buildLapList() {
+  return ListView.builder(
+    itemCount: lapList.length,
+    itemBuilder: (context, index) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Lap ${index + 1}',
+            style: const TextStyle(color: Colors.white),
+          ),
+          Text(
+            _formatElapsedTime(lapList[index]),
+            style: const TextStyle(color: Colors.white),
+          ),
+        ],
+      );
+    },
+  );
+} 
 }
