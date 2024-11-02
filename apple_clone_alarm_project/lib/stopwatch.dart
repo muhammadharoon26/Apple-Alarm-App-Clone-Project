@@ -281,24 +281,25 @@ class _MyStopwatchState extends State<MyStopwatch> {
       backgroundColor: Colors.black,
     );
   }
- Widget _buildLapList() {
-  return ListView.builder(
-    itemCount: lapList.length,
-    itemBuilder: (context, index) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Lap ${index + 1}',
-            style: const TextStyle(color: Colors.white),
-          ),
-          Text(
-            _formatElapsedTime(lapList[index]),
-            style: const TextStyle(color: Colors.white),
-          ),
-        ],
-      );
-    },
-  );
-} 
+
+  Widget _buildLapList() {
+    return ListView.builder(
+      itemCount: lapList.length,
+      itemBuilder: (context, index) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Lap ${index + 1}',
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              _formatElapsedTime(lapList[index]),
+              style: const TextStyle(color: Colors.white),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
