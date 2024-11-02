@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           AlarmPage(),
           // StopWatchPage(),
           MyStopwatch(),
-          TimerPage(),
+          TimersPage(),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
