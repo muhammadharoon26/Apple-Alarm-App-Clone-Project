@@ -42,12 +42,13 @@ class _TimersPageState extends State<TimersPageState> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(),
-          _buildAlarmInfo(),
+          SizedBox(height:100),
+          _buildTimersInfo(),
           // Expanded(
-          //   child: _buildTimerList(),
+          //   child: _buildTimersList(),
           // ),
         ],
       ),
@@ -58,33 +59,32 @@ class _TimersPageState extends State<TimersPageState> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Text(
-              'Edit',
-              style: TextStyle(color: Colors.orange[300], fontSize: 16),
-            ),
-            // const Spacer(),
-          ]),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                  child: Text('Timers',
-                      style: TextStyle(color: Colors.white, fontSize: 16))),
-            ],
-          )
+          Text(
+            'Edit',
+            style: TextStyle(color: Colors.orange[300], fontSize: 16),
+          ),
+          Text('Timers',
+              style: TextStyle(color: Colors.white, fontSize: 16)),
+              SizedBox(height:10,width:50)
         ],
       ),
     );
   }
 
-  Widget _buildAlarmInfo() {
-    return Padding(
+  Widget _buildTimersInfo() {
+    return Container(
+      width:350,
+      height: 20,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        borderRadius:BorderRadius.circular(5),
+        color: Colors.grey[800],
+      ),
       child: Center(child: Container(child: Row())),
     );
   }
 
-  // Widget _buildTimerList() {}
+  // Widget _buildTimersList() {}
 }
