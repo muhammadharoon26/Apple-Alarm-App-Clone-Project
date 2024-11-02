@@ -1,7 +1,5 @@
-import 'dart:async'; // Correct import for Timer
-
+import 'dart:async';
 import 'package:flutter/material.dart';
-
 void main() {
   runApp(const MyStopwatch());
 }
@@ -51,7 +49,7 @@ class StopWatchPageState extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: Text(
               'Stop Watch',
@@ -79,7 +77,7 @@ class _MyStopwatchState extends State<MyStopwatch> {
   final Stopwatch _stopwatch = Stopwatch();
   late Duration _elapsedTime;
   late String _elapsedTimeString;
-  late Timer timer;
+  late Timer? _timer;
 
   @override
   void initState() {
@@ -88,10 +86,12 @@ class _MyStopwatchState extends State<MyStopwatch> {
     _elapsedTime = Duration.zero;
     _elapsedTimeString = _formatElapsedTime(_elapsedTime);
 
-    // Create a timer that runs a callback every 100 milliseconds to update UI
-    timer = Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (Timer timer) {
       setState(() {
-        // Update elapsed time only if the stopwatch is running
         if (_stopwatch.isRunning) {
           _updateElapsedTime();
         }
@@ -99,26 +99,20 @@ class _MyStopwatchState extends State<MyStopwatch> {
     });
   }
 
-  // Start/Stop button callback
   void _startStopwatch() {
     if (!_stopwatch.isRunning) {
-      // Start the stopwatch and update elapsed time
       _stopwatch.start();
       _updateElapsedTime();
     } else {
-      // Stop the stopwatch
       _stopwatch.stop();
     }
   }
 
-  // Reset button callback
   void _resetStopwatch() {
-    // Reset the stopwatch to zero and update elapsed time
     _stopwatch.reset();
     _updateElapsedTime();
   }
 
-  // Update elapsed time and formatted time string
   void _updateElapsedTime() {
     setState(() {
       _elapsedTime = _stopwatch.elapsed;
@@ -126,14 +120,13 @@ class _MyStopwatchState extends State<MyStopwatch> {
     });
   }
 
-  // Format a Duration into a string (MM:SS.SS)
   String _formatElapsedTime(Duration time) {
     return '${time.inMinutes.remainder(60).toString().padLeft(2, '0')}:${(time.inSeconds.remainder(60)).toString().padLeft(2, '0')}.${(time.inMilliseconds % 1000 ~/ 100).toString()}';
   }
 
   @override
   void dispose() {
-    timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -143,25 +136,48 @@ class _MyStopwatchState extends State<MyStopwatch> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Display elapsed time
+          children: [
             Text(
               _elapsedTimeString,
-              style: const TextStyle(color:Colors.white,fontSize: 40.0),
+              style: const TextStyle(color: Colors.white, fontSize: 60.0),
             ),
             const SizedBox(height: 20.0),
-            // Start/Stop and Reset buttons
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: _startStopwatch,
-                  child: Text(_stopwatch.isRunning ? 'Stop' : 'Start'),
-                ),
-                const SizedBox(width: 20.0),
-                ElevatedButton(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 84,
+                  height: 84,
+                child:ElevatedButton(
                   onPressed: _resetStopwatch,
-                  child: const Text('Reset'),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      const Color.fromARGB(105, 245, 245, 245),
+                    ),
+                  ),
+                  child: const Text(
+                    'Reset',
+                    style: TextStyle(color: Colors.white,fontSize: 14),
+                  ),
+                ),),
+                SizedBox(
+                  width: 84,
+                  height: 84,
+                  child: ElevatedButton(
+                    onPressed: _startStopwatch,
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        Colors.green.shade900,
+                      )
+                    ),
+                    child: Text(
+                      _stopwatch.isRunning ? 'Stop' : 'Start',
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 59, 173, 65),
+                        fontSize: 14
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
