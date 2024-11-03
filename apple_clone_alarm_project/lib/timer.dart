@@ -34,72 +34,68 @@ class TimersPageState extends StatefulWidget {
 }
 
 class _TimersPageState extends State<TimersPageState> {
-  // List of items to display in the ListWheelScrollView
-  final List<String> items = ['Hello', 'World', 'Flutter', 'Loop'];
+  // Dummy data for hours, minutes, and seconds
+  final List<String> hours = List.generate(24, (index) => '$index hours');
+  final List<String> minutes = List.generate(60, (index) => '$index min');
+  final List<String> seconds = List.generate(60, (index) => '$index sec');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
-        children: [
-          _buildHeader(),
-          const SizedBox(height: 100),
-          _buildTimersInfo(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Edit',
-            style: TextStyle(color: Colors.orange[300], fontSize: 16),
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.9, // Adjust width as needed
+          height: 100, // Adjust height as needed
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildTimeWheel(hours),
+              _buildTimeWheel(minutes),
+              _buildTimeWheel(seconds),
+            ],
           ),
-          const Text('Timers', style: TextStyle(color: Colors.white, fontSize: 16)),
-          const SizedBox(height: 10, width: 50)
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildTimersInfo() {
+  Widget _buildTimeWheel(List<String> items) {
     return Stack(
       alignment: Alignment.center,
       children: [
-        // Centered background behind the magnified item only
+        // Gray background centered behind the magnified item
         Container(
-          width: 350,  // Adjust width to match magnified item width
-          height: 50,
+          width: 90, // Adjust width to match the wheel's width
+          height: 50, // Adjust height as needed
           decoration: BoxDecoration(
             color: Colors.grey[800],
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(8),
           ),
         ),
-        // The scrollable list
+        // Scrollable list
         SizedBox(
-          height: 130,
+          width: 90, // Adjust width to match the wheel's width
           child: ListWheelScrollView.useDelegate(
-            diameterRatio: 1.5,
+            diameterRatio: 2.0,
             itemExtent: 42,
             physics: const FixedExtentScrollPhysics(),
             useMagnifier: true,
             magnification: 1.5,
             childDelegate: ListWheelChildLoopingListDelegate(
-              children: [Text('Hello',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              )]
+              children: items.map((item) => Center(
+                child: Text(
+                  item,
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              )).toList(),
             ),
           ),
         ),
       ],
     );
   }
+
 
   // Widget _buildTimersList() {}
 }
