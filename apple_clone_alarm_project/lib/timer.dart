@@ -34,22 +34,18 @@ class TimersPageState extends StatefulWidget {
 }
 
 class _TimersPageState extends State<TimersPageState> {
-  // Initialize a list to hold the state of each switch in the list
-  List<bool> alarmSwitchStates = List.generate(2, (_) => true);
+  // List of items to display in the ListWheelScrollView
+  final List<String> items = ['Hello', 'World', 'Flutter', 'Loop'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(),
-          const SizedBox(height:100),
+          const SizedBox(height: 100),
           _buildTimersInfo(),
-          // Expanded(
-          //   child: _buildTimersList(),
-          // ),
         ],
       ),
     );
@@ -65,24 +61,43 @@ class _TimersPageState extends State<TimersPageState> {
             'Edit',
             style: TextStyle(color: Colors.orange[300], fontSize: 16),
           ),
-          const Text('Timers',
-              style: TextStyle(color: Colors.white, fontSize: 16)),
-              const SizedBox(height:10,width:50)
+          const Text('Timers', style: TextStyle(color: Colors.white, fontSize: 16)),
+          const SizedBox(height: 10, width: 50)
         ],
       ),
     );
   }
 
   Widget _buildTimersInfo() {
-    return Container(
-      width:350,
-      height: 20,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius:BorderRadius.circular(5),
-        color: Colors.grey[800],
-      ),
-      child: Center(child: Container(child: const Row())),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        // Centered background behind the magnified item only
+        Container(
+          width: 350,  // Adjust width to match magnified item width
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.grey[800],
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
+        // The scrollable list
+        SizedBox(
+          height: 130,
+          child: ListWheelScrollView.useDelegate(
+            diameterRatio: 1.5,
+            itemExtent: 42,
+            physics: const FixedExtentScrollPhysics(),
+            useMagnifier: true,
+            magnification: 1.5,
+            childDelegate: ListWheelChildLoopingListDelegate(
+              children: [Text('Hello',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              )]
+            ),
+          ),
+        ),
+      ],
     );
   }
 
