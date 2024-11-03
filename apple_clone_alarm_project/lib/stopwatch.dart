@@ -172,8 +172,8 @@ class _MyStopwatchState extends State<MyStopwatch> {
                         backgroundColor:
                             const Color.fromARGB(71, 245, 245, 245),
                         padding: EdgeInsets.zero,
-                        minimumSize: Size(87, 87),
-                        maximumSize: Size(87, 87),
+                        minimumSize: const Size(87, 87),
+                        maximumSize: const Size(87, 87),
                         shape: const CircleBorder(),
                       ),
                       child: const Text(
@@ -197,7 +197,7 @@ class _MyStopwatchState extends State<MyStopwatch> {
                           // borderRadius: const BorderRadius.all(Radius.circular(15.0)),
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Color.fromARGB(100, 59, 173, 65),
+                            color: const Color.fromARGB(100, 59, 173, 65),
                             width: 3,
                           ),
                         ),
@@ -209,8 +209,8 @@ class _MyStopwatchState extends State<MyStopwatch> {
                           backgroundColor:
                               const Color.fromARGB(170, 21, 81, 25),
                           padding: EdgeInsets.zero,
-                          minimumSize: Size(87, 87),
-                          maximumSize: Size(87, 87),
+                          minimumSize: const Size(87, 87),
+                          maximumSize: const Size(87, 87),
                           shape: const CircleBorder(),
                         ),
                         child: Text(
@@ -238,7 +238,7 @@ class _MyStopwatchState extends State<MyStopwatch> {
                           // borderRadius: const BorderRadius.all(Radius.circular(15.0)),
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Color.fromARGB(100, 59, 173, 65),
+                            color: const Color.fromARGB(100, 59, 173, 65),
                             width: 3,
                           ),
                         ),
@@ -250,8 +250,8 @@ class _MyStopwatchState extends State<MyStopwatch> {
                           backgroundColor:
                               const Color.fromARGB(170, 21, 81, 25),
                           padding: EdgeInsets.zero,
-                          minimumSize: Size(87, 87),
-                          maximumSize: Size(87, 87),
+                          minimumSize: const Size(87, 87),
+                          maximumSize: const Size(87, 87),
                           shape: const CircleBorder(),
                         ),
                         child: const Text(

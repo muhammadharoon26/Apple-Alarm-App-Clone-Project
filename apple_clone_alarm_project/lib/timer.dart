@@ -45,7 +45,7 @@ class _TimersPageState extends State<TimersPageState> {
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(),
-          SizedBox(height:100),
+          const SizedBox(height:100),
           _buildTimersInfo(),
           // Expanded(
           //   child: _buildTimersList(),
@@ -65,9 +65,9 @@ class _TimersPageState extends State<TimersPageState> {
             'Edit',
             style: TextStyle(color: Colors.orange[300], fontSize: 16),
           ),
-          Text('Timers',
+          const Text('Timers',
               style: TextStyle(color: Colors.white, fontSize: 16)),
-              SizedBox(height:10,width:50)
+              const SizedBox(height:10,width:50)
         ],
       ),
     );
@@ -82,7 +82,7 @@ class _TimersPageState extends State<TimersPageState> {
         borderRadius:BorderRadius.circular(5),
         color: Colors.grey[800],
       ),
-      child: Center(child: Container(child: Row())),
+      child: Center(child: Container(child: const Row())),
     );
   }
 
