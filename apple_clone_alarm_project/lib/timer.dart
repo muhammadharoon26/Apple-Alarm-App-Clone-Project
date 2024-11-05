@@ -57,7 +57,7 @@ class _TimersPageState extends State<TimersPageState> {
               ),
             ),
             // Row of time wheels
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.9, // Adjust width as needed
               height: 100, // Adjust height as needed
               child: Row(
