@@ -101,6 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.ease);
               },
+              tooltip: 'Timers',
               color: _selectedIndex == 3
                   ? const Color.fromARGB(255, 226, 168, 31)
                   : Colors.grey,
