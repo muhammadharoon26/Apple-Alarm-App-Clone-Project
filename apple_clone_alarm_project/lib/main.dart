@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final PageController _controller = PageController(initialPage: 0);
-  int _selectedIndex = 0; // Track the selected index
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -47,107 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
         children: const [
           WorldClock(),
           AlarmPage(),
-          // StopWatchPage(),
           MyStopwatch(),
           TimersPage(),
         ],
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   color: Colors.black,
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //     children: [
-      //       Row(
-      //         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //         children: [
-      //           ElevatedButton.icon(
-      //               icon: const Icon(FontAwesomeIcons.globe),
-      //               onPressed: () {
-      //                 _controller.animateToPage(0,
-      //                     duration: const Duration(milliseconds: 500),
-      //                     curve: Curves.ease);
-      //               },
-      //               label: Text(
-      //                 'Stopwatch',
-      //                 style: TextStyle(
-      //                     color: _selectedIndex == 0
-      //                         ? const Color.fromARGB(255, 226, 168, 31)
-      //                         : Colors.grey),
-      //               ),
-      //               style: ElevatedButton.styleFrom(
-      //                   iconColor: _selectedIndex == 0
-      //                       ? const Color.fromARGB(255, 226, 168, 31)
-      //                       : Colors.grey,
-      //                   backgroundColor: Colors.black)
-      //               // color: color?Color.fromARGB(255, 226, 168, 31):
-      //               // Text('World Clock')
-      //               ),
-      //           ElevatedButton.icon(
-      //               icon: const Icon(Icons.alarm),
-      //               onPressed: () {
-      //                 _controller.animateToPage(1,
-      //                     duration: const Duration(milliseconds: 500),
-      //                     curve: Curves.ease);
-      //               },
-      //               label: Text(
-      //                 'Alarm',
-      //                 style: TextStyle(
-      //                     color: _selectedIndex == 1
-      //                         ? const Color.fromARGB(255, 226, 168, 31)
-      //                         : Colors.grey),
-      //               ),
-      //               style: ElevatedButton.styleFrom(
-      //                   iconColor: _selectedIndex == 1
-      //                       ? const Color.fromARGB(255, 226, 168, 31)
-      //                       : Colors.grey,
-      //                   backgroundColor: Colors.black)),
-      //           ElevatedButton.icon(
-      //               icon: const Icon(Icons.timer),
-      //               onPressed: () {
-      //                 _controller.animateToPage(2,
-      //                     duration: const Duration(milliseconds: 500),
-      //                     curve: Curves.ease);
-      //               },
-      //               label: Text(
-      //                 'Stopwatch',
-      //                 style: TextStyle(
-      //                     color: _selectedIndex == 2
-      //                         ? const Color.fromARGB(255, 226, 168, 31)
-      //                         : Colors.grey),
-      //               ),
-      //               style: ElevatedButton.styleFrom(
-      //                   iconColor: _selectedIndex == 2
-      //                       ? const Color.fromARGB(255, 226, 168, 31)
-      //                       : Colors.grey,
-      //                   backgroundColor: Colors.black)),
-      //           ElevatedButton.icon(
-      //               icon: const Icon(Icons.schedule),
-      //               onPressed: () {
-      //                 _controller.animateToPage(3,
-      //                     duration: const Duration(milliseconds: 500),
-      //                     curve: Curves.ease);
-      //               },
-      //               label: Text(
-      //                 'Timers',
-      //                 style: TextStyle(
-      //                     color: _selectedIndex == 3
-      //                         ? const Color.fromARGB(255, 226, 168, 31)
-      //                         : Colors.grey),
-      //               ),
-      //               style: ElevatedButton.styleFrom(
-      //                   iconColor: _selectedIndex == 3
-      //                       ? const Color.fromARGB(255, 226, 168, 31)
-      //                       : Colors.grey,
-      //                   backgroundColor: Colors.black)),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
               onPressed: () {
@@ -158,9 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   _selectedIndex = 0;
                 });
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -170,8 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ? const Color.fromARGB(255, 226, 168, 31)
                         : Colors.grey,
                   ),
-                  const SizedBox(
-                      height: 4), // Add spacing between icon and label
+                  const SizedBox(height: 4),
                   Text(
                     'World Clock',
                     style: TextStyle(
@@ -193,9 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   _selectedIndex = 1;
                 });
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -218,7 +120,70 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            // Repeat the structure for the other two buttons
+            ElevatedButton(
+              onPressed: () {
+                _controller.animateToPage(2,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.ease);
+                setState(() {
+                  _selectedIndex = 2;
+                });
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.timer,
+                    color: _selectedIndex == 2
+                        ? const Color.fromARGB(255, 226, 168, 31)
+                        : Colors.grey,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Stopwatch',
+                    style: TextStyle(
+                      color: _selectedIndex == 2
+                          ? const Color.fromARGB(255, 226, 168, 31)
+                          : Colors.grey,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _controller.animateToPage(3,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.ease);
+                setState(() {
+                  _selectedIndex = 3;
+                });
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.schedule,
+                    color: _selectedIndex == 3
+                        ? const Color.fromARGB(255, 226, 168, 31)
+                        : Colors.grey,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Timers',
+                    style: TextStyle(
+                      color: _selectedIndex == 3
+                          ? const Color.fromARGB(255, 226, 168, 31)
+                          : Colors.grey,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
