@@ -52,60 +52,173 @@ class _MyHomePageState extends State<MyHomePage> {
           TimersPage(),
         ],
       ),
+      // bottomNavigationBar: BottomAppBar(
+      //   color: Colors.black,
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //     children: [
+      //       Row(
+      //         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //         children: [
+      //           ElevatedButton.icon(
+      //               icon: const Icon(FontAwesomeIcons.globe),
+      //               onPressed: () {
+      //                 _controller.animateToPage(0,
+      //                     duration: const Duration(milliseconds: 500),
+      //                     curve: Curves.ease);
+      //               },
+      //               label: Text(
+      //                 'Stopwatch',
+      //                 style: TextStyle(
+      //                     color: _selectedIndex == 0
+      //                         ? const Color.fromARGB(255, 226, 168, 31)
+      //                         : Colors.grey),
+      //               ),
+      //               style: ElevatedButton.styleFrom(
+      //                   iconColor: _selectedIndex == 0
+      //                       ? const Color.fromARGB(255, 226, 168, 31)
+      //                       : Colors.grey,
+      //                   backgroundColor: Colors.black)
+      //               // color: color?Color.fromARGB(255, 226, 168, 31):
+      //               // Text('World Clock')
+      //               ),
+      //           ElevatedButton.icon(
+      //               icon: const Icon(Icons.alarm),
+      //               onPressed: () {
+      //                 _controller.animateToPage(1,
+      //                     duration: const Duration(milliseconds: 500),
+      //                     curve: Curves.ease);
+      //               },
+      //               label: Text(
+      //                 'Alarm',
+      //                 style: TextStyle(
+      //                     color: _selectedIndex == 1
+      //                         ? const Color.fromARGB(255, 226, 168, 31)
+      //                         : Colors.grey),
+      //               ),
+      //               style: ElevatedButton.styleFrom(
+      //                   iconColor: _selectedIndex == 1
+      //                       ? const Color.fromARGB(255, 226, 168, 31)
+      //                       : Colors.grey,
+      //                   backgroundColor: Colors.black)),
+      //           ElevatedButton.icon(
+      //               icon: const Icon(Icons.timer),
+      //               onPressed: () {
+      //                 _controller.animateToPage(2,
+      //                     duration: const Duration(milliseconds: 500),
+      //                     curve: Curves.ease);
+      //               },
+      //               label: Text(
+      //                 'Stopwatch',
+      //                 style: TextStyle(
+      //                     color: _selectedIndex == 2
+      //                         ? const Color.fromARGB(255, 226, 168, 31)
+      //                         : Colors.grey),
+      //               ),
+      //               style: ElevatedButton.styleFrom(
+      //                   iconColor: _selectedIndex == 2
+      //                       ? const Color.fromARGB(255, 226, 168, 31)
+      //                       : Colors.grey,
+      //                   backgroundColor: Colors.black)),
+      //           ElevatedButton.icon(
+      //               icon: const Icon(Icons.schedule),
+      //               onPressed: () {
+      //                 _controller.animateToPage(3,
+      //                     duration: const Duration(milliseconds: 500),
+      //                     curve: Curves.ease);
+      //               },
+      //               label: Text(
+      //                 'Timers',
+      //                 style: TextStyle(
+      //                     color: _selectedIndex == 3
+      //                         ? const Color.fromARGB(255, 226, 168, 31)
+      //                         : Colors.grey),
+      //               ),
+      //               style: ElevatedButton.styleFrom(
+      //                   iconColor: _selectedIndex == 3
+      //                       ? const Color.fromARGB(255, 226, 168, 31)
+      //                       : Colors.grey,
+      //                   backgroundColor: Colors.black)),
+      //         ],
+      //       ),
+      //     ],
+      //   ),
+      // ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-              icon: const Icon(FontAwesomeIcons.globe),
+            ElevatedButton(
               onPressed: () {
                 _controller.animateToPage(0,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.ease);
+                setState(() {
+                  _selectedIndex = 0;
+                });
               },
-              tooltip: 'World Clock',
-              color: _selectedIndex == 0
-                  ? const Color.fromARGB(255, 226, 168, 31)
-                  : Colors.grey,
-              // color: color?Color.fromARGB(255, 226, 168, 31):
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    FontAwesomeIcons.globe,
+                    color: _selectedIndex == 0
+                        ? const Color.fromARGB(255, 226, 168, 31)
+                        : Colors.grey,
+                  ),
+                  const SizedBox(
+                      height: 4), // Add spacing between icon and label
+                  Text(
+                    'World Clock',
+                    style: TextStyle(
+                      color: _selectedIndex == 0
+                          ? const Color.fromARGB(255, 226, 168, 31)
+                          : Colors.grey,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            IconButton(
-              icon: const Icon(Icons.alarm),
+            ElevatedButton(
               onPressed: () {
                 _controller.animateToPage(1,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.ease);
+                setState(() {
+                  _selectedIndex = 1;
+                });
               },
-              tooltip: 'Alarm',
-              color: _selectedIndex == 1
-                  ? const Color.fromARGB(255, 226, 168, 31)
-                  : Colors.grey,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.alarm,
+                    color: _selectedIndex == 1
+                        ? const Color.fromARGB(255, 226, 168, 31)
+                        : Colors.grey,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Alarm',
+                    style: TextStyle(
+                      color: _selectedIndex == 1
+                          ? const Color.fromARGB(255, 226, 168, 31)
+                          : Colors.grey,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            IconButton(
-              icon: const Icon(Icons.timer),
-              onPressed: () {
-                _controller.animateToPage(2,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.ease);
-              },
-              tooltip: 'Stopwatch',
-              color: _selectedIndex == 2
-                  ? const Color.fromARGB(255, 226, 168, 31)
-                  : Colors.grey,
-            ),
-            IconButton(
-              icon: const Icon(Icons.schedule),
-              onPressed: () {
-                _controller.animateToPage(3,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.ease);
-              },
-              tooltip: 'Timers',
-              color: _selectedIndex == 3
-                  ? const Color.fromARGB(255, 226, 168, 31)
-                  : Colors.grey,
-            ),
+            // Repeat the structure for the other two buttons
           ],
         ),
       ),
