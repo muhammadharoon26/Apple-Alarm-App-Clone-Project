@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "273077207210",
+    "project_id": "apple-clone-alarm-project",
+    "storage_bucket": "apple-clone-alarm-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273077207210:android:afb92105bbf518fa40d0d3",
+        "android_client_info": {
+          "package_name": "com.iosalarm.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaNwySjW-CoLCkLums-W226Ql9PqxBLdc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
