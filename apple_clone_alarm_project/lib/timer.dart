@@ -39,38 +39,73 @@ class _TimersPageState extends State<TimersPageState> {
   final List<String> minutes = List.generate(60, (index) => '$index min');
   final List<String> seconds = List.generate(60, (index) => '$index sec');
 
+  void _startTimer() {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            // Single gray background behind magnified items
-            Container(
-              width: MediaQuery.of(context).size.width * 0.9, // Adjust width as needed
-              height: 50, // Adjust height to match magnified area
+      appBar: AppBar(
+        title: const Text('Timers'),
+        backgroundColor: Colors.black,
+      ),
+      body: Column(
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Single gray background behind magnified items
+          const SizedBox(
+            height: 100,
+          ),
+          Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width *
+                  0.9, // Adjust width as needed
+              height: 100, // Adjust height to match magnified area
               decoration: BoxDecoration(
                 color: Colors.grey[800],
                 borderRadius: BorderRadius.circular(8),
               ),
-            ),
-            // Row of time wheels
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9, // Adjust width as needed
-              height: 100, // Adjust height as needed
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildTimeWheel(hours),
-                  _buildTimeWheel(minutes),
-                  _buildTimeWheel(seconds),
-                ],
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width *
+                    0.9, // Adjust width as needed
+                height: 200, // Adjust height as needed
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // alignment: Alignment.center,
+                  children: [
+                    _buildTimeWheel(hours),
+                    _buildTimeWheel(minutes),
+                    _buildTimeWheel(seconds),
+                    // SizedBox(height: 20,),
+                  ],
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+          SizedBox(height: 50),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            TextButton(
+                onPressed: _startTimer,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(170, 21, 81, 25),
+                  padding: EdgeInsets.zero,
+                  minimumSize: const Size(87, 87),
+                  maximumSize: const Size(87, 87),
+                  shape: const CircleBorder(),
+                ),
+                child: Text('Start')),
+            TextButton(
+                onPressed: _startTimer,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(170, 21, 81, 25),
+                  padding: EdgeInsets.zero,
+                  minimumSize: const Size(87, 87),
+                  maximumSize: const Size(87, 87),
+                  shape: const CircleBorder(),
+                ),
+                child: Text('Cancel')),
+          ])
+          // Row of time wheels
+        ],
       ),
     );
   }
@@ -85,17 +120,18 @@ class _TimersPageState extends State<TimersPageState> {
         useMagnifier: true,
         magnification: 1.5,
         childDelegate: ListWheelChildLoopingListDelegate(
-          children: items.map((item) => Center(
-            child: Text(
-              item,
-              style: const TextStyle(color: Colors.white, fontSize: 16),
-            ),
-          )).toList(),
+          children: items
+              .map((item) => Center(
+                    child: Text(
+                      item,
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ))
+              .toList(),
         ),
       ),
     );
   }
-
 
   // Widget _buildTimersList() {}
 }
