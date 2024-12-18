@@ -53,9 +53,6 @@ class _TimersPageState extends State<TimersPageState> {
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Single gray background behind magnified items
-          const SizedBox(
-            height: 30,
-          ),
           Center(
             child: Container(
               width: MediaQuery.of(context).size.width *
@@ -82,7 +79,7 @@ class _TimersPageState extends State<TimersPageState> {
               ),
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 5),
           Container(
             width: MediaQuery.of(context).size.width *
                 0.9, // Adjust width as needed
@@ -172,7 +169,8 @@ class _TimersPageState extends State<TimersPageState> {
               ],
             ),
           ),
-          const Text('Recents', style: TextStyle(color: Colors.white, fontSize: 20)),
+          const Text('Recents',
+              style: TextStyle(color: Colors.white, fontSize: 20)),
           const Divider(
             height: 1,
             color: Color.fromARGB(105, 245, 245, 245),
@@ -208,7 +206,7 @@ class _TimersPageState extends State<TimersPageState> {
     );
   }
 
-Widget _buildTimerList() {
+  Widget _buildTimerList() {
     return ListView.separated(
       separatorBuilder: (_, __) => const Divider(
         indent: 15,
@@ -258,17 +256,34 @@ Widget _buildTimerList() {
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
                 children: [
-                  Switch(
-                    value: timerSwitchStates[index],
-                    trackOutlineColor: WidgetStateProperty.all(Colors.black54),
-                    activeTrackColor: const Color.fromARGB(255, 62, 236, 77),
-                    inactiveThumbColor: Colors.white,
-                    inactiveTrackColor: Colors.black54,
-                    onChanged: (bool value) {
-                      setState(() {
-                        timerSwitchStates[index] = value;
-                      });
-                    },
+                  // Switch(
+                  //   value: timerSwitchStates[index],
+                  //   trackOutlineColor: WidgetStateProperty.all(Colors.black54),
+                  //   activeTrackColor: const Color.fromARGB(255, 62, 236, 77),
+                  //   inactiveThumbColor: Colors.white,
+                  //   inactiveTrackColor: Colors.black54,
+                  //   onChanged: (bool value) {
+                  //     setState(() {
+                  //       timerSwitchStates[index] = value;
+                  //     });
+                  //   },
+                  // ),
+                  IconButton(
+                    onPressed: _startTimer,
+                    icon: const Icon(
+                      Icons.play_arrow, // Play button icon
+                      size: 40, // Adjust the icon size as needed
+                      color: Color.fromARGB(
+                          255, 59, 173, 65), // Same as the text color
+                    ),
+                    style: IconButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(
+                          170, 21, 81, 25), // Same background
+                      padding: EdgeInsets.zero,
+                      minimumSize: const Size(65, 65),
+                      maximumSize: const Size(65, 65),
+                      shape: const CircleBorder(),
+                    ),
                   ),
                 ],
               ),
@@ -278,4 +293,5 @@ Widget _buildTimerList() {
       },
       itemCount: timerSwitchStates.length,
     );
-  }}
+  }
+}
