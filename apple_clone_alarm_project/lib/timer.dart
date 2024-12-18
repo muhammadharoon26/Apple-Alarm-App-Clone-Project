@@ -51,6 +51,14 @@ class _TimersPageState extends State<TimersPageState> {
       backgroundColor: Colors.black,
       body: Column(
         children: [
+          const Text(
+            'Timers',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           Center(
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,
