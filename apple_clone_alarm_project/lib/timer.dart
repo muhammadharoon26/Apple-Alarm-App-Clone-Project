@@ -38,7 +38,7 @@ class _TimersPageState extends State<TimersPageState> {
   final List<String> hours = List.generate(13, (index) => '$index hours');
   final List<String> minutes = List.generate(60, (index) => '$index min');
   final List<String> seconds = List.generate(60, (index) => '$index sec');
-  List<bool> timerSwitchStates = List.generate(2, (_) => true);
+  List<bool> timerSwitchStates = List.generate(3, (_) => true);
 
   void _startTimer() {}
   @override
@@ -256,18 +256,6 @@ class _TimersPageState extends State<TimersPageState> {
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
                 children: [
-                  // Switch(
-                  //   value: timerSwitchStates[index],
-                  //   trackOutlineColor: WidgetStateProperty.all(Colors.black54),
-                  //   activeTrackColor: const Color.fromARGB(255, 62, 236, 77),
-                  //   inactiveThumbColor: Colors.white,
-                  //   inactiveTrackColor: Colors.black54,
-                  //   onChanged: (bool value) {
-                  //     setState(() {
-                  //       timerSwitchStates[index] = value;
-                  //     });
-                  //   },
-                  // ),
                   IconButton(
                     onPressed: _startTimer,
                     icon: const Icon(
