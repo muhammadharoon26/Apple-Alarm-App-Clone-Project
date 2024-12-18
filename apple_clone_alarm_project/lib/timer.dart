@@ -9,10 +9,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Apple Clone Alarm Project',
-      home: TimersPage(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.black,
+      ),
+      home: const TimersPage(),
     );
   }
 }
@@ -34,13 +38,13 @@ class TimersPageState extends StatefulWidget {
 }
 
 class _TimersPageState extends State<TimersPageState> {
-  // Dummy data for hours, minutes, and seconds
   final List<String> hours = List.generate(13, (index) => '$index hours');
   final List<String> minutes = List.generate(60, (index) => '$index min');
   final List<String> seconds = List.generate(60, (index) => '$index sec');
   List<bool> timerSwitchStates = List.generate(3, (_) => true);
 
   void _startTimer() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,30 +54,24 @@ class _TimersPageState extends State<TimersPageState> {
         backgroundColor: Colors.black,
       ),
       body: Column(
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Single gray background behind magnified items
           Center(
             child: Container(
-              width: MediaQuery.of(context).size.width *
-                  0.9, // Adjust width as needed
-              height: 100, // Adjust height to match magnified area
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: 100,
               decoration: BoxDecoration(
                 color: Colors.grey[800],
                 borderRadius: BorderRadius.circular(8),
               ),
               child: SizedBox(
-                width: MediaQuery.of(context).size.width *
-                    0.9, // Adjust width as needed
-                height: 200, // Adjust height as needed
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: 200,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  // alignment: Alignment.center,
                   children: [
                     _buildTimeWheel(hours),
                     _buildTimeWheel(minutes),
                     _buildTimeWheel(seconds),
-                    // SizedBox(height: 20,),
                   ],
                 ),
               ),
@@ -81,56 +79,53 @@ class _TimersPageState extends State<TimersPageState> {
           ),
           SizedBox(height: 5),
           Container(
-            width: MediaQuery.of(context).size.width *
-                0.9, // Adjust width as needed
+            width: MediaQuery.of(context).size.width * 0.9,
             height: 100,
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: _startTimer,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(170, 21, 81, 25),
-                      padding: EdgeInsets.zero,
-                      minimumSize: const Size(87, 87),
-                      maximumSize: const Size(87, 87),
-                      shape: const CircleBorder(),
-                    ),
-                    child: const Text(
-                      // _stopwatch.isRunning ? 'Stop' : 'Start',
-                      'Cancel',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 59, 173, 65),
-                        fontSize: 20,
-                      ),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: _startTimer,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(170, 21, 81, 25),
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(87, 87),
+                    maximumSize: const Size(87, 87),
+                    shape: const CircleBorder(),
+                  ),
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 59, 173, 65),
+                      fontSize: 20,
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: _startTimer,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(170, 21, 81, 25),
-                      padding: EdgeInsets.zero,
-                      minimumSize: const Size(87, 87),
-                      maximumSize: const Size(87, 87),
-                      shape: const CircleBorder(),
-                    ),
-                    child: const Text(
-                      'Start',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 59, 173, 65),
-                        fontSize: 20,
-                      ),
+                ),
+                ElevatedButton(
+                  onPressed: _startTimer,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(170, 21, 81, 25),
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(87, 87),
+                    maximumSize: const Size(87, 87),
+                    shape: const CircleBorder(),
+                  ),
+                  child: const Text(
+                    'Start',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 59, 173, 65),
+                      fontSize: 20,
                     ),
                   ),
-                ]),
+                ),
+              ],
+            ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width *
-                0.9, // Adjust width as needed
+            width: MediaQuery.of(context).size.width * 0.9,
             height: 100,
             child: Column(
               children: [
-                // "Label" Section
                 Container(
                   color: Colors.grey[900],
                   child: ListTile(
@@ -144,9 +139,7 @@ class _TimersPageState extends State<TimersPageState> {
                     ),
                   ),
                 ),
-                Divider(color: Colors.grey, height: 0), // Thin divider
-
-                // "When Timer Ends" Section
+                Divider(color: Colors.grey, height: 0),
                 Container(
                   color: Colors.grey[900],
                   child: ListTile(
@@ -161,7 +154,7 @@ class _TimersPageState extends State<TimersPageState> {
                           'Sprinkles',
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                        Icon(Icons.chevron_right, color: Colors.grey), // Arrow
+                        Icon(Icons.chevron_right, color: Colors.grey),
                       ],
                     ),
                   ),
@@ -171,10 +164,7 @@ class _TimersPageState extends State<TimersPageState> {
           ),
           const Text('Recents',
               style: TextStyle(color: Colors.white, fontSize: 20)),
-          const Divider(
-            height: 1,
-            color: Color.fromARGB(105, 245, 245, 245),
-          ),
+          const Divider(height: 1, color: Color.fromARGB(105, 245, 245, 245)),
           Expanded(
             child: _buildTimerList(),
           ),
@@ -185,7 +175,7 @@ class _TimersPageState extends State<TimersPageState> {
 
   Widget _buildTimeWheel(List<String> items) {
     return SizedBox(
-      width: 90, // Adjust width to match the wheel's width
+      width: 90,
       child: ListWheelScrollView.useDelegate(
         diameterRatio: 2.0,
         itemExtent: 42,
@@ -209,17 +199,14 @@ class _TimersPageState extends State<TimersPageState> {
   Widget _buildTimerList() {
     return ListView.separated(
       separatorBuilder: (_, __) => const Divider(
-        indent: 15,
-        height: 1,
-        color: Color.fromARGB(105, 245, 245, 245),
-      ),
+          indent: 15, height: 1, color: Color.fromARGB(105, 245, 245, 245)),
       itemBuilder: (_, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -229,17 +216,15 @@ class _TimersPageState extends State<TimersPageState> {
                       Text(
                         '7:00',
                         style: TextStyle(
-                          color: Color.fromARGB(105, 245, 245, 245),
-                          fontSize: 60,
-                        ),
+                            color: Color.fromARGB(105, 245, 245, 245),
+                            fontSize: 60),
                       ),
                       Text(
                         'AM',
                         style: TextStyle(
-                          color: Color.fromARGB(105, 245, 245, 245),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w300,
-                        ),
+                            color: Color.fromARGB(105, 245, 245, 245),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w300),
                       ),
                     ],
                   ),
@@ -249,7 +234,7 @@ class _TimersPageState extends State<TimersPageState> {
                         color: Color.fromARGB(105, 245, 245, 245),
                         fontSize: 14),
                   ),
-                  SizedBox(height: 4)
+                  SizedBox(height: 4),
                 ],
               ),
               Row(
@@ -258,15 +243,10 @@ class _TimersPageState extends State<TimersPageState> {
                 children: [
                   IconButton(
                     onPressed: _startTimer,
-                    icon: const Icon(
-                      Icons.play_arrow, // Play button icon
-                      size: 40, // Adjust the icon size as needed
-                      color: Color.fromARGB(
-                          255, 59, 173, 65), // Same as the text color
-                    ),
+                    icon: const Icon(Icons.play_arrow,
+                        size: 40, color: Color.fromARGB(255, 59, 173, 65)),
                     style: IconButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(
-                          170, 21, 81, 25), // Same background
+                      backgroundColor: const Color.fromARGB(170, 21, 81, 25),
                       padding: EdgeInsets.zero,
                       minimumSize: const Size(65, 65),
                       maximumSize: const Size(65, 65),
