@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:apple_clone_alarm_project/app_header.dart';
 
 class WorldClock extends StatefulWidget {
   const WorldClock({super.key});
@@ -93,21 +94,7 @@ class _WorldClockState extends State<WorldClock> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Edit',
-                        style:
-                            TextStyle(color: Colors.orange[300], fontSize: 16),
-                      ),
-                      Icon(Icons.add, color: Colors.orange[300]),
-                    ],
-                  ),
-                ),
+                Header(),
                 const Padding(
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 20),
                   child: Text(

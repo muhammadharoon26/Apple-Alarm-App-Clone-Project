@@ -49,10 +49,6 @@ class _TimersPageState extends State<TimersPageState> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: const Text('Timers'),
-        backgroundColor: Colors.black,
-      ),
       body: Column(
         children: [
           Center(

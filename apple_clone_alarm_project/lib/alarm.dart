@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:apple_clone_alarm_project/app_header.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,27 +45,11 @@ class _AlarmPageState extends State<AlarmPageState> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(),
+          Header(),
           _buildAlarmInfo(),
           Expanded(
             child: _buildAlarmList(),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Edit',
-            style: TextStyle(color: Colors.orange[300], fontSize: 16),
-          ),
-          Icon(Icons.add, color: Colors.orange[300]),
         ],
       ),
     );
