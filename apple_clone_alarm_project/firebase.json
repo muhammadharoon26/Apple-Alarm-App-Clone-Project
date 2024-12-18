@@ -1,1 +1,25 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"apple-clone-alarm-project","appId":"1:273077207210:android:afb92105bbf518fa40d0d3","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"apple-clone-alarm-project","configurations":{"android":"1:273077207210:android:afb92105bbf518fa40d0d3","ios":"1:273077207210:ios:8624b41f445ff89d40d0d3","macos":"1:273077207210:ios:8624b41f445ff89d40d0d3","web":"1:273077207210:web:1bdf48688e4e80ba40d0d3","windows":"1:273077207210:web:fc7c69bf3c1d3b7e40d0d3"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "apple-clone-alarm-project",
+                    "appId": "1:273077207210:android:afb92105bbf518fa40d0d3",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "apple-clone-alarm-project",
+                    "configurations": {
+                        "android": "1:273077207210:android:afb92105bbf518fa40d0d3",
+                        "ios": "1:273077207210:ios:8624b41f445ff89d40d0d3",
+                        "macos": "1:273077207210:ios:8624b41f445ff89d40d0d3",
+                        "web": "1:273077207210:web:1bdf48688e4e80ba40d0d3",
+                        "windows": "1:273077207210:web:fc7c69bf3c1d3b7e40d0d3"
+                    }
+                }
+            }
+        }
+    }
+}
