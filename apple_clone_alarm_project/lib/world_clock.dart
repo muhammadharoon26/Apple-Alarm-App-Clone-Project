@@ -150,8 +150,7 @@ class _WorldClockState extends State<WorldClock> {
                             Text(
                               'Today, ${_getOffsetString(city['offset'] as Duration)}',
                               style: const TextStyle(
-                                  color:
-                                      Color.fromARGB(105, 245, 245, 245),
+                                  color: Color.fromARGB(105, 245, 245, 245),
                                   fontSize: 14),
                             ),
                             const SizedBox(height: 4),

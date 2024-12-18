@@ -147,7 +147,8 @@ class _MyStopwatchState extends State<MyStopwatch> {
           children: [
             Text(
               _elapsedTimeString,
-              style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 60.0),
+              style: const TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255), fontSize: 60.0),
             ),
             const SizedBox(height: 20.0),
             Row(

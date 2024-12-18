@@ -123,7 +123,8 @@ class _AlarmPageState extends State<AlarmPageState> {
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(60, 245, 245, 245),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   minimumSize: Size.zero,
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
@@ -139,7 +140,8 @@ class _AlarmPageState extends State<AlarmPageState> {
             color: Color.fromARGB(105, 245, 245, 245),
           ),
           const SizedBox(height: 40),
-          const Text('Other', style: TextStyle(color: Colors.white, fontSize: 20)),
+          const Text('Other',
+              style: TextStyle(color: Colors.white, fontSize: 20)),
           const Divider(
             height: 1,
             color: Color.fromARGB(105, 245, 245, 245),
