@@ -46,8 +46,8 @@ class _TimerHeaderState extends State<TimerHeader> {
             style: TextStyle(color: Colors.orange[300], fontSize: 16),
           ),
           // Icon(Icons.add, color: Colors.orange[300]),
-          SizedBox(width: 185,),
-          Text(
+          const SizedBox(width: 185,),
+          const Text(
             'Timers',
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),

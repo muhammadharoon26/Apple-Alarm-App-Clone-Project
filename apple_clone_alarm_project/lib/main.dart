@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _selectedIndex = index;
           });
         },
-        children: [
+        children: const [
           WorldClock(),
           AlarmPage(),
           MyStopwatch(),

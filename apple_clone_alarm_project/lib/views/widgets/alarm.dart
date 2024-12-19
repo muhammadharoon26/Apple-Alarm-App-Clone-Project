@@ -45,7 +45,7 @@ class _AlarmPageState extends State<AlarmPageState> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Header(),
+          const Header(),
           _buildAlarmInfo(),
           Expanded(
             child: _buildAlarmList(),
