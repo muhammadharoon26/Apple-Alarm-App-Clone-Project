@@ -1,4 +1,4 @@
-# Apple Clock Clone
+# Apple Apple Alarm App
 
 A Flutter project that recreates the iOS Clock app with its four main features: World Clock, Alarm, Stopwatch, and Timer. This project demonstrates advanced UI implementation and state management in Flutter.
 
