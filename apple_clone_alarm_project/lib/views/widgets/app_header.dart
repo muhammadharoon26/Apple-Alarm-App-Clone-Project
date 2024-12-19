@@ -26,13 +26,6 @@ class _HeaderState extends State<Header> {
   }
 }
 
-
-
-
-
-
-
-
 class TimerHeader extends StatefulWidget {
   const TimerHeader({super.key});
 

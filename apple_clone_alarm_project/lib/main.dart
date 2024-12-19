@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:apple_clone_alarm_project/world_clock.dart';
-import 'package:apple_clone_alarm_project/alarm.dart';
-import 'package:apple_clone_alarm_project/timer.dart';
-import 'package:apple_clone_alarm_project/stopwatch.dart';
+import 'package:apple_clone_alarm_project/views/widgets/world_clock.dart';
+import 'package:apple_clone_alarm_project/views/widgets/alarm.dart';
+import 'package:apple_clone_alarm_project/views/widgets/timer.dart';
+import 'package:apple_clone_alarm_project/views/widgets/stopwatch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {

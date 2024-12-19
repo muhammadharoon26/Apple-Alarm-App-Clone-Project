@@ -310,3 +310,109 @@ class _MyStopwatchState extends State<MyStopwatch> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:apple_clone_alarm_project/models/stopwatchLogic.dart';
+// import 'package:provider/provider.dart';
+
+// void main() {
+//   runApp(
+//     ChangeNotifierProvider(
+//       create: (context) => StopwatchLogic(),
+//       child: const MyStopwatch(),
+//     ),
+//   );
+// }
+
+// class MyStopwatch extends StatelessWidget {
+//   const MyStopwatch({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Apple Clone Alarm Project',
+//       home: StopWatchPage(),
+//     );
+//   }
+// }
+
+// class StopWatchPage extends StatelessWidget {
+//   const StopWatchPage({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final logic = Provider.of<StopwatchLogic>(context);
+
+//     return Scaffold(
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Text(
+//               logic.elapsedTimeString,
+//               style: const TextStyle(color: Colors.white, fontSize: 60.0),
+//             ),
+//             const SizedBox(height: 20.0),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 _buildButton(
+//                   label: 'Reset',
+//                   onPressed: logic.resetStopwatch,
+//                 ),
+//                 _buildButton(
+//                   label: logic.stopwatch.isRunning ? 'Stop' : 'Start',
+//                   onPressed: logic.startStopwatch,
+//                 ),
+//                 _buildButton(
+//                   label: 'Lap',
+//                   onPressed: logic.recordLap,
+//                 ),
+//               ],
+//             ),
+//             const SizedBox(height: 20.0),
+//             const Divider(color: Colors.grey),
+//             Expanded(
+//               child: ListView.builder(
+//                 itemCount: logic.laps.length,
+//                 itemBuilder: (context, index) {
+//                   final lap = logic.laps[index];
+//                   return ListTile(
+//                     title: Text(
+//                       'Lap ${index + 1}: ${logic.formatElapsedTime(lap)}',
+//                       style: const TextStyle(color: Colors.white),
+//                     ),
+//                   );
+//                 },
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//       backgroundColor: Colors.black,
+//     );
+//   }
+
+//   Widget _buildButton({required String label, required VoidCallback onPressed}) {
+//     return ElevatedButton(
+//       onPressed: onPressed,
+//       child: Text(label),
+//     );
+//   }
+// }
