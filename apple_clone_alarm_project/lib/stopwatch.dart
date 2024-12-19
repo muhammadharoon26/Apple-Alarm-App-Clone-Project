@@ -286,6 +286,8 @@ class _MyStopwatchState extends State<MyStopwatch> {
     return ListView.builder(
       itemCount: lapList.length,
       itemBuilder: (context, index) {
+        Duration lapTime =
+            index == 0 ? lapList[index] : lapList[index] - lapList[index - 1];
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -293,9 +295,14 @@ class _MyStopwatchState extends State<MyStopwatch> {
               'Lap ${index + 1}',
               style: const TextStyle(color: Colors.white),
             ),
+            // Text(
+            //   _formatElapsedTime(lapList[index]),
+            //   style: const TextStyle(color: Colors.white),
+            // ),
+
             Text(
-              _formatElapsedTime(lapList[index]),
-              style: const TextStyle(color: Colors.white),
+              _formatElapsedTime(lapTime),
+              style: const TextStyle(color: Colors.grey, fontSize: 14),
             ),
           ],
         );
