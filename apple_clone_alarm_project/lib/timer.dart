@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:apple_clone_alarm_project/app_header.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,15 +51,9 @@ class _TimersPageState extends State<TimersPageState> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Text(
-            'Timers',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          TimerHeader(),
           Center(
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,
@@ -129,6 +124,7 @@ class _TimersPageState extends State<TimersPageState> {
             width: MediaQuery.of(context).size.width * 0.9,
             height: 100,
             child: Column(
+              // mainAxisAlignment:MainAxisAlignment.start,
               children: [
                 Container(
                   color: Colors.grey[900],
@@ -166,8 +162,11 @@ class _TimersPageState extends State<TimersPageState> {
               ],
             ),
           ),
-          const Text('Recents',
-              style: TextStyle(color: Colors.white, fontSize: 20)),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: const Text('Recents',
+                style: TextStyle(color: Colors.white, fontSize: 20)),
+          ),
           const Divider(height: 1, color: Color.fromARGB(105, 245, 245, 245)),
           Expanded(
             child: _buildTimerList(),
